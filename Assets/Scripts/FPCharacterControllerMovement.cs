@@ -22,6 +22,7 @@ public class FPCharacterControllerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Screen.SetResolution(1280, 720, true);
         characterController = GetComponent<CharacterController>();
         characterTransform = transform;
         originHeight = characterController.height;

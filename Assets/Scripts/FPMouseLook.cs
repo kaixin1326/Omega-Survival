@@ -22,7 +22,7 @@ public class FPMouseLook : MonoBehaviour
         var tmp_MouseX = Input.GetAxis("Mouse X");
         var tmp_MouseY = Input.GetAxis("Mouse Y");
 
-        cameraRotation.x += tmp_MouseY * MouseSensitivity;
+        cameraRotation.x -= tmp_MouseY * MouseSensitivity;
         cameraRotation.y += tmp_MouseX * MouseSensitivity;
 
         cameraRotation.x = Mathf.Clamp(value: cameraRotation.x, min: MaxminAngle.x, max: MaxminAngle.y);
