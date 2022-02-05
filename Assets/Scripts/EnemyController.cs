@@ -17,8 +17,8 @@ public class EnemyController : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
-    public float sightRange;
-    public bool playerInSightRange;
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
 
     private Animation anime;
 
@@ -34,14 +34,19 @@ public class EnemyController : MonoBehaviour
     {
         //check if player is in sight
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange)
+        if (!playerInSightRange && !playerInAttackRange)
         {
             Idle();
         }
-        else
+        if(playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+        }
+        if(playerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
         }
 
     }
