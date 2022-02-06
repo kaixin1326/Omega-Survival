@@ -25,12 +25,15 @@ public class EnemyController : MonoBehaviour
     public bool inSight;
     private Animation anime;
 
+    public bool isDead = false;
+
     private void Awake()
     {
         player = GameObject.Find("FPCharacterControlller").transform;
         agent = GetComponent<NavMeshAgent>();
 
         anime = GetComponent<Animation>();
+        anime["Death"].wrapMode = WrapMode.Once;
     }
 
     private void Update()
@@ -64,15 +67,15 @@ public class EnemyController : MonoBehaviour
         }
         
 
-        if (!inSight && !playerInAttackRange)
+        if (!inSight && !playerInAttackRange && !isDead)
         {
             Idle();
         }
-        if(inSight && !playerInAttackRange)
+        if (inSight && !playerInAttackRange && !isDead)
         {
             ChasePlayer();
         }
-        if(inSight && playerInAttackRange)
+        if (inSight && playerInAttackRange && !isDead)
         {
             AttackPlayer();
         }
@@ -118,16 +121,18 @@ public class EnemyController : MonoBehaviour
     {
         health -= demage;
 
-        if(health <= 0)
+        if(!isDead && health <= 0)
         {
-            Invoke(nameof(DestroyEnemy), 0.5f);
+            isDead = true;
+
+            anime.Play("Death");
+
+            Invoke(nameof(DestroyEnemy), 1.5f);
         }
     }
 
     private void DestroyEnemy()
     {
-        anime.Play("Death");
-
         Destroy(gameObject);
     }
 }
