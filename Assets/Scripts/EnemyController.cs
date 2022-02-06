@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
 
     public Transform player;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsGround, whatIsPlayer, whatIsObst;
 
     public float health;
 
@@ -18,8 +18,11 @@ public class EnemyController : MonoBehaviour
     bool alreadyAttacked;
 
     public float sightRange, attackRange;
+    [Range(0,360)]
+    public float angle;
     public bool playerInSightRange, playerInAttackRange;
-
+    public Vector3 distance;
+    public bool inSight;
     private Animation anime;
 
     private void Awake()
@@ -36,15 +39,40 @@ public class EnemyController : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange)
+        distance = Vector3.Normalize(transform.position - player.position)*2;
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+
+        if (playerInSightRange){
+            if (Vector3.Angle(transform.forward, directionToPlayer) < angle /2) 
+            {
+                float dist = Vector3.Distance(transform.position, player.position);
+                if (!Physics.Raycast(transform.position, directionToPlayer, dist, whatIsObst))
+                {
+                    inSight = true;
+                }
+                else{
+                    inSight = false;
+                }   
+            }
+            else{
+                inSight = false;
+            }
+        }
+        else if (inSight)
+        {
+            inSight = false;
+        }
+        
+
+        if (!inSight && !playerInAttackRange)
         {
             Idle();
         }
-        if(playerInSightRange && !playerInAttackRange)
+        if(inSight && !playerInAttackRange)
         {
             ChasePlayer();
         }
-        if(playerInSightRange && playerInAttackRange)
+        if(inSight && playerInAttackRange)
         {
             AttackPlayer();
         }
@@ -59,15 +87,15 @@ public class EnemyController : MonoBehaviour
     private void ChasePlayer()
     {
         anime.Play("Run");
-
-        agent.SetDestination(player.position);
+        
+        agent.SetDestination(player.position + distance);
     }
 
     private void AttackPlayer()
     {
         anime.Play("Attack1");
 
-        agent.SetDestination(player.position);
+        // agent.SetDestination(player.position + distance);
 
         transform.LookAt(player);
 
@@ -101,3 +129,4 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
