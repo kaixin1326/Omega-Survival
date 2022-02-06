@@ -126,6 +126,8 @@ public class EnemyController : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        anime.Play("Death");
+
         Destroy(gameObject);
     }
 }
