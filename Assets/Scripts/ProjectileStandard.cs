@@ -116,7 +116,7 @@ public class ProjectileStandard : MonoBehaviour
 
             if(impactVFXLifeTime > 0)
             {
-                Destroy(impactVFX, impactVFXLifeTime);
+                Destroy(impactVFXInstance, impactVFXLifeTime);
             }
         }
         Destroy(gameObject);
