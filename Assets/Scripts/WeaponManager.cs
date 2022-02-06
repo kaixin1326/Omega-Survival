@@ -30,7 +30,13 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //获取武器库的第一个武器
+        WeaponController activeWeapon = _weaponSlots[0];
+        if (activeWeapon)
+        {
+            //按下射击按键
+            activeWeapon.HandleShootInputs(PlayerInputHandler.Instance.GetFireInputHeld());
+        }
     }
 
     //将武器存储到

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//用Rigidbody使角色移动
 public class FPMovement : MonoBehaviour
 {
     private Transform characterTransform;
@@ -10,6 +10,7 @@ public class FPMovement : MonoBehaviour
     public float Speed;
     public float Gravity;
     public float JumpHeight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class FPMovement : MonoBehaviour
             var Vertical = Input.GetAxis("Vertical");
 
             var currentDirection = new Vector3(x: Horizontal, y: 0, z: Vertical);
+
             currentDirection = characterTransform.TransformDirection(currentDirection);
             currentDirection *= Speed;
 

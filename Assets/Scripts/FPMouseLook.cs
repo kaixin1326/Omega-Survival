@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//鼠标移动
 public class FPMouseLook : MonoBehaviour
 {
+
     private Transform CameraTransform;
     [SerializeField] private Transform characterTransform;//引入 使角色随着相机旋转
     private Vector3 cameraRotation;//保存每一帧X轴值
@@ -17,7 +18,7 @@ public class FPMouseLook : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         var tmp_MouseX = Input.GetAxis("Mouse X");
         var tmp_MouseY = Input.GetAxis("Mouse Y");

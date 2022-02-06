@@ -19,6 +19,8 @@ public class FPCharacterControllerMovement : MonoBehaviour
     public float Gravity = 9.8f;
     public float CrouchHeight;
 
+    private PlayerInputHandler _inputHandler;
+
     // Start is called before the first frame update
     private void Start()
     {
