@@ -65,6 +65,9 @@ MonoBehaviour:
   hittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  impactVFX: {fileID: 7655095426451682942, guid: b44155a491834754482508226b37b2d2, type: 3}
+  impactVFXLifeTime: 5
+  impactVFXSpawnOffset: 0.1
 --- !u!1 &8673405656186895986
 GameObject:
   m_ObjectHideFlags: 0

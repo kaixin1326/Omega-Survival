@@ -17,6 +17,12 @@ public class ProjectileStandard : MonoBehaviour
 
     public LayerMask hittableLayers = -1;
 
+    public GameObject impactVFX;
+
+    public float impactVFXLifeTime = 5f;
+    //击打到墙壁后粒子的偏移量
+    public float impactVFXSpawnOffset = 0.1f;
+
     private ProjectileBase _projectileBase;
 
     private Vector3 _velocity;
@@ -87,7 +93,7 @@ public class ProjectileStandard : MonoBehaviour
                 closestHit.normal = -transform.forward;
             }
 
-            OnHit();
+            OnHit(closestHit.point, closestHit.normal);
         }
     }
 
@@ -100,9 +106,19 @@ public class ProjectileStandard : MonoBehaviour
         return true;
     }
     //用来处理碰撞后的音效和特效
-    private void OnHit()
+    private void OnHit(Vector3 point, Vector3 normal)
     {
-        print(message:"Hit");
+        if(impactVFX != null)
+        {
+            GameObject impactVFXInstance = Instantiate(impactVFX,
+                point + normal * impactVFXSpawnOffset,
+                Quaternion.LookRotation(normal));
+
+            if(impactVFXLifeTime > 0)
+            {
+                Destroy(impactVFX, impactVFXLifeTime);
+            }
+        }
         Destroy(gameObject);
     }
 }
