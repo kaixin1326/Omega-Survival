@@ -23,6 +23,8 @@ public class ProjectileStandard : MonoBehaviour
     //击打到墙壁后粒子的偏移量
     public float impactVFXSpawnOffset = 0.1f;
 
+    public float damage = 10f;
+
     private ProjectileBase _projectileBase;
 
     private Vector3 _velocity;
@@ -139,7 +141,7 @@ public class ProjectileStandard : MonoBehaviour
                 closestHit.normal = -transform.forward;
             }
 
-            OnHit(closestHit.point, closestHit.normal);
+            OnHit(closestHit.point, closestHit.normal, closestHit.collider);
         }
     }
 
@@ -152,8 +154,13 @@ public class ProjectileStandard : MonoBehaviour
         return true;
     }
     //用来处理碰撞后的音效和特效
-    private void OnHit(Vector3 point, Vector3 normal)
+    private void OnHit(Vector3 point, Vector3 normal,Collider collider)
     {
+        Damageable damageable = collider.GetComponent<Damageable>();
+        if (damageable)
+        {
+            damageable.InflictDamage(damage);
+        }
         if(impactVFX != null)
         {
             GameObject impactVFXInstance = Instantiate(impactVFX,

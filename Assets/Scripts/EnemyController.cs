@@ -122,7 +122,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public void TakeDemage(int demage)
+    public void TakeDemage(float demage)
     {
         health -= demage;
 
