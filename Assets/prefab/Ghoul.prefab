@@ -2391,6 +2391,7 @@ GameObject:
   - component: {fileID: 6857645588770322426}
   - component: {fileID: 6857645588770322431}
   - component: {fileID: 6857645588770322429}
+  - component: {fileID: 510778892}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Untagged
@@ -2405,7 +2406,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858954387189150199}
-  m_LocalRotation: {x: -0, y: 0.9962493, z: -0, w: -0.08652957}
+  m_LocalRotation: {x: 0, y: 0.9962493, z: -0, w: -0.086529545}
   m_LocalPosition: {x: 0.28, y: -0.03999996, z: 13.04}
   m_LocalScale: {x: 0.56742, y: 0.56742, z: 0.56742}
   m_Children:
@@ -2518,12 +2519,24 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   sightRange: 10
   attackRange: 3
-  angle: 98
+  angle: 360
   playerInSightRange: 0
   playerInAttackRange: 0
   distance: {x: 0, y: 0, z: 0}
   inSight: 0
   isDead: 0
+--- !u!114 &510778892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858954387189150199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5255a7e8a844adba029e9944daeeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6858957578684087827
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1064734304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponParentPosition
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1078514642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstPersonSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1739097876}
   - component: {fileID: 1739097878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,15 +148,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444735553933172811, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 6444735553933172811, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 6444735553933172811, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 24.18
       objectReference: {fileID: 0}
     - target: {fileID: 6444735553933172811, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -188,11 +188,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444735553933172814, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_Name
-      value: FPCharacterControlller
+      value: FPCharacterControlller_copy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444735553933172814, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444735554043180105, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6444735554984543676, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444735554984543678, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9123205951844746022, guid: 07df89a7e1f7740d89cae8188776c5a9, type: 3}
       propertyPath: WalkSpeed
@@ -262,4 +274,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWeapons:
   - {fileID: 2207743777928703465, guid: cb20bb7940b1b48d88f6c42d35b0f018, type: 3}
+  weaponCamera: {fileID: 1739097878}
   WeaponParentSocket: {fileID: 1064734304}
+--- !u!114 &352332917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417729945504043058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b89b953ee90449ca54830c419a3d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookSensitivity: 1
