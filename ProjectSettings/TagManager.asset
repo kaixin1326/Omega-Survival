@@ -11,9 +11,9 @@ TagManager:
   - FirstPersonWeapon
   - Water
   - UI
-  - 
-  - 
-  - 
+  - WhatIsPlayer
+  - WhatIsObst
+  - WhatIsGround
   - 
   - 
   - 
