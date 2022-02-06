@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+
     public GameObject WeaponRoot;
     //是否有武器
     public bool isWeaponActive { get; private set; }
@@ -33,7 +34,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -72,6 +73,7 @@ public class WeaponController : MonoBehaviour
             //方向位置和火焰方向一致
             Vector3 shotDirection = weaponMuzzle.forward;
             ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, weaponMuzzle.rotation, weaponMuzzle.transform);
+            //ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponCamera.transform.position, weaponCamera.transform.rotation, weaponCamera.transform);
             newProjectile.Shoot(controller:this);
         }
 

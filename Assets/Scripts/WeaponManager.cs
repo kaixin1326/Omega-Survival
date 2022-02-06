@@ -7,6 +7,8 @@ public class WeaponManager : MonoBehaviour
 {
     //
     public List<WeaponController> startingWeapons = new List<WeaponController>();
+
+    public Camera weaponCamera;
     //武器显示位置
     public Transform WeaponParentSocket;
     //回调函数

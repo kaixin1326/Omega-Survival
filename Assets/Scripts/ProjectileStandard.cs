@@ -26,6 +26,14 @@ public class ProjectileStandard : MonoBehaviour
     private ProjectileBase _projectileBase;
 
     private Vector3 _velocity;
+    //每一帧移动的长度
+    public float trajectoryCorrectionDistance = 5f;
+    //相对最终的向量已经移动的向量的大小
+    private Vector3 _consumedCorrectionVector;
+    //校准准心
+    private bool _hasTrajectoryCorrected;
+    //弹道校准向量
+    private Vector3 _correctionVector;
 
     //跟踪上次射击起始位置
     private Vector3 _lastRootPostion;
@@ -41,6 +49,24 @@ public class ProjectileStandard : MonoBehaviour
     {
         _lastRootPostion = root.position;
         _velocity += transform.forward * speed;
+
+        WeaponManager weaponManger = _projectileBase.Owner.GetComponent<WeaponManager>();
+
+        if (weaponManger)
+        {
+            _hasTrajectoryCorrected = false;
+            Transform weaponCameraTransform = weaponManger.weaponCamera.transform;
+            
+            Vector3 cameraToMuzzle = _projectileBase.initialPositon - weaponCameraTransform.position;
+            //Debug.DrawRay(weaponCameraTransform.position, cameraToMuzzle, Color.yellow, 6);
+
+            //将任意方向向量投影到指定平面 通过法线
+            _correctionVector = Vector3.ProjectOnPlane(-cameraToMuzzle,weaponCameraTransform.forward);
+            //Debug.DrawRay(weaponCameraTransform.position, -cameraToMuzzle, Color.red, 6);
+            //Debug.DrawRay(weaponCameraTransform.position, weaponCameraTransform.forward, Color.green, 6);
+            //Debug.DrawRay(weaponCameraTransform.position, _correctionVector, Color.magenta, 6);
+
+        }
     }
 
     // Start is called before the first frame update
@@ -56,6 +82,26 @@ public class ProjectileStandard : MonoBehaviour
         transform.position += _velocity * Time.deltaTime;
         //方向
         transform.forward = _velocity.normalized;
+
+        //子弹弹道运行轨迹移项屏幕中心
+        if (!_hasTrajectoryCorrected && _consumedCorrectionVector.sqrMagnitude < _correctionVector.sqrMagnitude)
+        {
+            //有多少向量需要更新
+            Vector3 correctionLeft = _correctionVector - _consumedCorrectionVector;
+            float distanceThisFrame = (root.position - _lastRootPostion).magnitude;
+            Vector3 correctionThisFrame = (distanceThisFrame / trajectoryCorrectionDistance) * _correctionVector;
+            correctionThisFrame = Vector3.ClampMagnitude(correctionThisFrame, correctionLeft.magnitude);
+
+            _consumedCorrectionVector += correctionThisFrame;
+
+            if (Mathf.Abs(_consumedCorrectionVector.sqrMagnitude - _correctionVector.sqrMagnitude) < Mathf.Epsilon)
+            {
+                _hasTrajectoryCorrected = true;
+            }
+
+            //开始调整弹道
+            transform.position += correctionThisFrame;
+        }
 
         //碰撞检测
         RaycastHit closestHit = new RaycastHit();

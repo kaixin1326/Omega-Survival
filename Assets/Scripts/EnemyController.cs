@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("FPCharacterControlller").transform;
+        player = GameObject.Find("FPCharacterControlller_copy").transform;
         agent = GetComponent<NavMeshAgent>();
 
         anime = GetComponent<Animation>();
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
         distance = Vector3.Normalize(transform.position - player.position)*2;
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
-
+        
         if (playerInSightRange){
             if (Vector3.Angle(transform.forward, directionToPlayer) < angle /2) 
             {
@@ -80,6 +80,11 @@ public class EnemyController : MonoBehaviour
             AttackPlayer();
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 
     private void Idle()
