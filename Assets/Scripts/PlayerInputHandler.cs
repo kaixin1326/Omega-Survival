@@ -50,6 +50,11 @@ public class PlayerInputHandler : MonoBehaviour
         return Input.GetButton("Fire");
     }
 
+    public bool GetReloadInputHeld()
+    {
+        return Input.GetButton("Reload");
+    }
+
     // Update is called once per frame
     void Update()
     {

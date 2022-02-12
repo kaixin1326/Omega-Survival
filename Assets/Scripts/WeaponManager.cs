@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
     //
     public List<WeaponController> startingWeapons = new List<WeaponController>();
+
+    public Text AmmoCountText;
 
     public Camera weaponCamera;
     //武器显示位置
@@ -38,6 +41,8 @@ public class WeaponManager : MonoBehaviour
         {
             //按下射击按键
             activeWeapon.HandleShootInputs(PlayerInputHandler.Instance.GetFireInputHeld());
+            activeWeapon.HandleReloadInputs(PlayerInputHandler.Instance.GetReloadInputHeld());
+            UpdateAmmoInfo(activeWeapon.GetCurrentAmmo, activeWeapon.GetCurrentAmmoCarried);
         }
     }
 
@@ -102,6 +107,18 @@ public class WeaponManager : MonoBehaviour
         if (newWeapon != null)
         {
             newWeapon.ShowWeapon(true);
+        }
+    }
+
+    private void UpdateAmmoInfo(string _ammo, string _ammoCarried)
+    {
+        if(_ammo == "Reloading")
+        {
+            AmmoCountText.text = "Ammo: " + _ammo;
+        }
+        else
+        {
+            AmmoCountText.text = "Ammo: " + _ammo + "/" + _ammoCarried;
         }
     }
 }

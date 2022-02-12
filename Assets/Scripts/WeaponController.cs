@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
@@ -24,6 +25,17 @@ public class WeaponController : MonoBehaviour
     private float lastShotTime = Mathf.NegativeInfinity;
     //
     public ProjectileBase projectilePrefab;
+
+    public int AmmoInMag = 30;
+    public int maxAmmoCarried = 210;
+
+    public string GetCurrentAmmo => isReloaded ? CurrentAmmo.ToString() : "Reloading";
+    public string GetCurrentAmmoCarried => CurrentAmmoCarried.ToString();
+
+    protected int CurrentAmmo;
+    protected int CurrentAmmoCarried;
+
+    private bool isReloaded = true;
     //显示武器
     public void ShowWeapon(bool show)
     {
@@ -34,7 +46,8 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurrentAmmo = AmmoInMag;
+        CurrentAmmoCarried = maxAmmoCarried;
     }
 
     // Update is called once per frame
@@ -46,18 +59,32 @@ public class WeaponController : MonoBehaviour
     //检测是否按下射击按钮
     public bool HandleShootInputs(bool inputHeld)
     {
-        if (inputHeld)
+        if (inputHeld && isReloaded)
         {
             return TryShoot();
         }
         return false;
     }
 
+    public bool HandleReloadInputs(bool inputHeld)
+    {
+        if (inputHeld)
+        {
+            return TryReload();
+        }
+        return false;
+    }
     //检测能否射击
     private bool TryShoot()
     {
+        if (CurrentAmmo <= 0)
+        {
+            TryReload();
+            return false;
+        }
         if(lastShotTime + delayBetweenShots < Time.time)
         {
+            CurrentAmmo -= 1;
             HandleShoot();
             return true;
         }
@@ -86,5 +113,32 @@ public class WeaponController : MonoBehaviour
             Destroy(muzzleFlashInstance, 2);
         }
         lastShotTime = Time.time;
+    }
+
+    private bool TryReload()
+    {
+        if (CurrentAmmo == AmmoInMag || CurrentAmmoCarried == 0) return false;
+        var AmmoCount = AmmoInMag - CurrentAmmo;
+        
+        isReloaded = false;
+        Invoke("Reload", 2);
+        //Reload();
+        return true;
+    }
+
+    private void Reload()
+    {
+        var AmmoCount = AmmoInMag - CurrentAmmo;
+        if (AmmoCount > CurrentAmmoCarried)
+        {
+            CurrentAmmo = CurrentAmmo + CurrentAmmoCarried;
+            CurrentAmmoCarried = 0;
+        }
+        else
+        {
+            CurrentAmmo = AmmoInMag;
+            CurrentAmmoCarried -= AmmoCount;
+        }
+        isReloaded = true;
     }
 }
