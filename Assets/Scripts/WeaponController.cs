@@ -27,13 +27,13 @@ public class WeaponController : MonoBehaviour
     public ProjectileBase projectilePrefab;
 
     public int AmmoInMag = 30;
-    public int maxAmmoCarried = 210;
+    public static int maxAmmoCarried = 210;
 
     public string GetCurrentAmmo => isReloaded ? CurrentAmmo.ToString() : "Reloading";
     public string GetCurrentAmmoCarried => CurrentAmmoCarried.ToString();
 
     protected int CurrentAmmo;
-    protected int CurrentAmmoCarried;
+    protected static int CurrentAmmoCarried;
 
     private bool isReloaded = true;
     //显示武器
@@ -140,5 +140,15 @@ public class WeaponController : MonoBehaviour
             CurrentAmmoCarried -= AmmoCount;
         }
         isReloaded = true;
+    }
+
+    public static void AddAmmo(int count)
+    {
+        CurrentAmmoCarried += count;
+
+        if(CurrentAmmoCarried >= maxAmmoCarried)
+        {
+            CurrentAmmoCarried = maxAmmoCarried;
+        }
     }
 }
