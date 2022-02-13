@@ -47,7 +47,7 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         CurrentAmmo = AmmoInMag;
-        CurrentAmmoCarried = maxAmmoCarried;
+        CurrentAmmoCarried = 60;
     }
 
     // Update is called once per frame

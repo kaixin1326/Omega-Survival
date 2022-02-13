@@ -8,6 +8,16 @@ public class PickUp : MonoBehaviour
     public int distanceToItem;
     public Text pickupNotice;
 
+    //inventory
+    [SerializeField] private UI_inventory uiInventory;
+    private static Inventory inventory;
+
+    private void Awake()
+    {
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +49,10 @@ public class PickUp : MonoBehaviour
                 pickupNotice.enabled = true;
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    //TODO:put in inventory
+                    //put in inventory
+                    inventory.AddItem(hit.transform.gameObject.GetComponent<itemDetail>().item);
                     Destroy(hit.transform.gameObject);
-                    WeaponController.AddAmmo(30);
+                    //WeaponController.AddAmmo(30);
                 }
             }
             else
