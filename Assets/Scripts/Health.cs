@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     private bool isInfected;
 
     public Text HealthText;
+    public Text GameStat;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour
     private void Update()
     {
         UpdateHealthInfo(health.ToString());
+        StartCoroutine(PauseGame());
     }
 
     public void TakeDemage(float demage)
@@ -49,4 +51,30 @@ public class Health : MonoBehaviour
     {
         HealthText.text = "Health: " + _health;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject col = collision.gameObject;
+        // Debug.Log(col.GetComponent<EnemyController>().state);
+        if (col.GetComponent<EnemyController>().state == "attacking")
+        {
+            TakeDemage(25);
+        }
+    }
+
+    IEnumerator PauseGame ()
+    {
+        if(isDead)
+        {
+            GameStat.text = "Game Over!";
+            yield return new WaitForSecondsRealtime(1);
+            Time.timeScale = 0f;
+        }
+        // else 
+        // {
+        //     GameStat.text = "";
+        //     Time.timeScale = 1;
+        // }
+    }
+
 }
