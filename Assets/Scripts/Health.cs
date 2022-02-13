@@ -56,7 +56,7 @@ public class Health : MonoBehaviour
     {
         GameObject col = collision.gameObject;
         // Debug.Log(col.GetComponent<EnemyController>().state);
-        if (col.GetComponent<EnemyController>().state == "attacking")
+        if (col.GetComponent<EnemyController>().state == "attacking" && health >= 0)
         {
             TakeDemage(25);
         }
