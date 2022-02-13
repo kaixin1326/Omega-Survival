@@ -14,8 +14,6 @@ public class UI_inventory : MonoBehaviour
     {
         itemSlotContainer = transform.Find("ItemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("ItemSlotTemplate");
-
-        itemSlotTemplate.gameObject.SetActive(false);
     }
 
     public void SetInventory(Inventory inventory)
@@ -23,7 +21,9 @@ public class UI_inventory : MonoBehaviour
         this.inventory = inventory;
 
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
-        RefreshInventoryItems();
+
+        //not sure why thw belowing function will cause error?
+        //RefreshInventoryItems();
     }
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)

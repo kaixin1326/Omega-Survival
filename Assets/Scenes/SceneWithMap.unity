@@ -44394,7 +44394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dde98f1032f248299a4a25422d52a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToItem: 10
+  distanceToItem: 5
   pickupNotice: {fileID: 999635993}
   uiInventory: {fileID: 597294668}
 --- !u!1001 &769499258
