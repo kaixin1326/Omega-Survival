@@ -91,7 +91,7 @@ Transform:
   m_Children:
   - {fileID: 6862327690194564633}
   m_Father: {fileID: 6855779572212138245}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6856918965775339431
 GameObject:
@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6862129561353428661}
+  - component: {fileID: 8690345246619275440}
   m_Layer: 0
   m_Name: Character1_LeftHand
   m_TagString: Untagged
@@ -221,6 +222,19 @@ Transform:
   m_Father: {fileID: 6862199740803187953}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 37.980362, y: 50.424572, z: 8.174602}
+--- !u!65 &8690345246619275440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856964676974129341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7710334, y: 0.7953794, z: 0.3300083}
+  m_Center: {x: -0.39583027, y: -0.21873224, z: 0.007519128}
 --- !u!1 &6856994705152991491
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +668,7 @@ Transform:
   m_Children:
   - {fileID: 6862264078001319835}
   - {fileID: 6855913888420603149}
+  - {fileID: 6862186603075840667}
   m_Father: {fileID: 6861822197363610151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -47.1455, y: -68.93727, z: 22.376812}
@@ -995,7 +1010,7 @@ Transform:
   m_Children:
   - {fileID: 6862153212055887903}
   m_Father: {fileID: 6855779572212138245}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6858416345445735591
 GameObject:
@@ -1847,13 +1862,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858767251903822595}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.20663951, y: -0.45839125, z: 0.066320695, w: 0.8618463}
+  m_LocalPosition: {x: 0.94990456, y: -2.6431422, z: 0.10896039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6855632093392968635}
-  m_Father: {fileID: 6855779572212138245}
-  m_RootOrder: 1
+  m_Father: {fileID: 6855671346505132271}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6858772191561225359
 GameObject:
@@ -1990,6 +2005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6855913888420603149}
+  - component: {fileID: 4251318691363025997}
   m_Layer: 0
   m_Name: Character1_RightHand
   m_TagString: Untagged
@@ -2016,6 +2032,19 @@ Transform:
   m_Father: {fileID: 6855671346505132271}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -34.431976, y: -47.306416, z: 3.047823}
+--- !u!65 &4251318691363025997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858811577187078105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4382899, y: 1.2537143, z: 1.2713784}
+  m_Center: {x: -0.2883872, y: -0.3000389, z: -0.09432097}
 --- !u!1 &6858833479480289157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6855779572212138245}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6828404233382327017
 SkinnedMeshRenderer:
@@ -2394,7 +2423,7 @@ GameObject:
   - component: {fileID: 510778892}
   m_Layer: 0
   m_Name: Ghoul
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2411,7 +2440,6 @@ Transform:
   m_LocalScale: {x: 0.56742, y: 0.56742, z: 0.56742}
   m_Children:
   - {fileID: 6862142060416201711}
-  - {fileID: 6862186603075840667}
   - {fileID: 6862121324651326923}
   - {fileID: 6856122702002066521}
   - {fileID: 6855634182685742739}
@@ -2525,6 +2553,7 @@ MonoBehaviour:
   distance: {x: 0, y: 0, z: 0}
   inSight: 0
   isDead: 0
+  state: idle
 --- !u!114 &510778892
 MonoBehaviour:
   m_ObjectHideFlags: 0

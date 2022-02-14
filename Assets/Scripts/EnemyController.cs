@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     private Animation anime;
 
     public bool isDead = false;
+    public string state = "idle";
 
     private void Awake()
     {
@@ -89,20 +90,21 @@ public class EnemyController : MonoBehaviour
 
     private void Idle()
     {
+        state = "idle";
         anime.Play("Idle");
     }
 
     private void ChasePlayer()
     {
         anime.Play("Run");
-        
+        state = "run";
         agent.SetDestination(player.position + distance);
     }
 
     private void AttackPlayer()
     {
         anime.Play("Attack1");
-
+        state = "attacking";
         // agent.SetDestination(player.position + distance);
 
         transform.LookAt(player);
@@ -131,7 +133,7 @@ public class EnemyController : MonoBehaviour
             isDead = true;
 
             anime.Play("Death");
-
+            state = "dead";
             Invoke(nameof(DestroyEnemy), 1.5f);
         }
     }
