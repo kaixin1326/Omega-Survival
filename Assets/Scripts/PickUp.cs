@@ -50,6 +50,7 @@ public class PickUp : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     //put in inventory
+                    Debug.Log(hit.transform.gameObject.GetComponent<itemDetail>().type);
                     inventory.AddItem(hit.transform.gameObject.GetComponent<itemDetail>().item);
                     Destroy(hit.transform.gameObject);
                     //WeaponController.AddAmmo(30);
