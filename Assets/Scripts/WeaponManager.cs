@@ -11,6 +11,8 @@ public class WeaponManager : MonoBehaviour
 
     public Text AmmoCountText;
 
+    public WeaponController activeWeapon;
+
     public Camera weaponCamera;
     //武器显示位置
     public Transform WeaponParentSocket;
@@ -36,7 +38,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         //获取武器库的第一个武器
-        WeaponController activeWeapon = _weaponSlots[0];
+        activeWeapon = _weaponSlots[0];
         if (activeWeapon)
         {
             //按下射击按键

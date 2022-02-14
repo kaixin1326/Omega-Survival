@@ -10,7 +10,7 @@ public class PickUp : MonoBehaviour
 
     //inventory
     [SerializeField] private UI_inventory uiInventory;
-    private static Inventory inventory;
+    public Inventory inventory;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class PickUp : MonoBehaviour
         {
             pickupNotice.enabled = false;
         }
+
     }
 
     // Update is called once per frame
@@ -50,15 +51,18 @@ public class PickUp : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     //put in inventory
-                    Debug.Log(hit.transform.gameObject.GetComponent<itemDetail>().type);
+                    if (hit.transform.gameObject.name.Contains("Ammo")) {
+                        Debug.Log("picked up ammo");
+                        Debug.Log(this.GetComponentInParent<WeaponManager>().activeWeapon);
+                        GetComponentInParent<WeaponManager>().activeWeapon.AddAmmo(hit.transform.gameObject.GetComponent<itemDetail>().itemAmount);
+                    }
                     inventory.AddItem(hit.transform.gameObject.GetComponent<itemDetail>().item);
                     Destroy(hit.transform.gameObject);
-                    //WeaponController.AddAmmo(30);
                 }
             }
             else
             {
-                pickupNotice.enabled = false;
+                pickupNotice.enabled = true;
             }
         }
 
