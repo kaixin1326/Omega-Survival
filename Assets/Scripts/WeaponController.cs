@@ -25,15 +25,16 @@ public class WeaponController : MonoBehaviour
     private float lastShotTime = Mathf.NegativeInfinity;
     //
     public ProjectileBase projectilePrefab;
+    private Inventory inventory;
 
     public int AmmoInMag = 30;
-    public int maxAmmoCarried = 210;
+    public static int maxAmmoCarried = 210;
 
     public string GetCurrentAmmo => isReloaded ? CurrentAmmo.ToString() : "Reloading";
     public string GetCurrentAmmoCarried => CurrentAmmoCarried.ToString();
 
     protected int CurrentAmmo;
-    protected int CurrentAmmoCarried;
+    protected static int CurrentAmmoCarried;
 
     private bool isReloaded = true;
     //显示武器
@@ -47,13 +48,14 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         CurrentAmmo = AmmoInMag;
-        CurrentAmmoCarried = maxAmmoCarried;
+        CurrentAmmoCarried = 60;
+        inventory = GetComponentInParent<PickUp>().inventory;
+        Debug.Log(inventory);
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     //检测是否按下射击按钮
@@ -129,16 +131,30 @@ public class WeaponController : MonoBehaviour
     private void Reload()
     {
         var AmmoCount = AmmoInMag - CurrentAmmo;
+
+
         if (AmmoCount > CurrentAmmoCarried)
         {
             CurrentAmmo = CurrentAmmo + CurrentAmmoCarried;
+            inventory.AddItem(new Item { itemType = 0, amount = -CurrentAmmoCarried });
             CurrentAmmoCarried = 0;
         }
         else
         {
             CurrentAmmo = AmmoInMag;
             CurrentAmmoCarried -= AmmoCount;
+            inventory.AddItem(new Item { itemType = 0, amount = -AmmoCount });
         }
         isReloaded = true;
+    }
+
+    public void AddAmmo(int count)
+    {
+        CurrentAmmoCarried += count;
+
+        if(CurrentAmmoCarried >= maxAmmoCarried)
+        {
+            CurrentAmmoCarried = maxAmmoCarried;
+        }
     }
 }

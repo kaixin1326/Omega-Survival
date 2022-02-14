@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 //用来处理输入
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class PlayerInputHandler : MonoBehaviour
     public static PlayerInputHandler Instance;
     public float lookSensitivity = 1f;
 
+    public GameObject bag;
+    private bool bagOpened = false;
+
     private void Awake()
     {
-        Instance = this;        
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -18,6 +22,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        bag.SetActive(false);
     }
 
     public Vector3 GetMoveInput()
@@ -58,9 +64,25 @@ public class PlayerInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //press esc to quit game
         if (Input.GetKey("escape"))
         {
             Application.Quit();
+        }
+
+        // press tab to open bag
+        if (Input.GetKeyDown("tab"))
+        {
+            if (bagOpened)
+            {
+                bag.SetActive(false);
+                bagOpened = false;
+            }
+            else
+            {
+                bag.SetActive(true);
+                bagOpened = true;
+            }
         }
     }
 }
