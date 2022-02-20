@@ -66,7 +66,7 @@ public class Health : MonoBehaviour
     {
         GameObject col = collision.gameObject;
         // Debug.Log(col.GetComponent<EnemyController>().state);
-        if (col.GetComponent<EnemyController>().state == "attacking" && health >= 0)
+        if (col.GetComponent<EnemyController>().state == "attacking" && health > 0)
         {
             TakeDamage(25);
         }
