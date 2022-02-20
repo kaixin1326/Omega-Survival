@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GhoulDamge : MonoBehaviour
-{   
-    private void OnCollisionEnter(Collision collision)
+{
+    //private Collider myColLastHit = null;
+    private void OnTriggerEnter(Collider col)
     {
-        //Debug.Log(collision.collider.GetType());
-        PlayerDamageable damageable = collision.collider.GetComponent<PlayerDamageable>();
+        //if (col.GetComponent<IlastCollide>())
+        //{
+        //    myColLastHit = col.GetComponent<IlastCollide>().iLastEntered;
+        //}
+        
+        PlayerDamageable damageable = col.GetComponent<PlayerDamageable>();
         if (damageable)
         {
-            damageable.InflictDamage(25.0f);
+            damageable.InflictDamage(1.0f);
         }
     }
 }

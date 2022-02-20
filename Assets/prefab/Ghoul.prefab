@@ -230,10 +230,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6856964676974129341}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7710334, y: 0.7953794, z: 0.3300083}
+  m_Size: {x: 1.6, y: 1.4, z: 1.4}
   m_Center: {x: -0.39583027, y: -0.21873224, z: 0.007519128}
 --- !u!1 &6856994705152991491
 GameObject:
@@ -2040,10 +2040,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858811577187078105}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4382899, y: 1.2537143, z: 1.2713784}
+  m_Size: {x: 1.6, y: 1.4, z: 1.4}
   m_Center: {x: -0.2883872, y: -0.3000389, z: -0.09432097}
 --- !u!1 &6858833479480289157
 GameObject:
@@ -2483,7 +2483,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 96
   m_CollisionDetection: 0
 --- !u!136 &6857645588770322426
 CapsuleCollider:
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   health: 120
   timeBetweenAttacks: 1
   sightRange: 10
-  attackRange: 3
+  attackRange: 1.5
   angle: 360
   playerInSightRange: 0
   playerInAttackRange: 0

@@ -23,7 +23,7 @@ public class ProjectileStandard : MonoBehaviour
     //击打到墙壁后粒子的偏移量
     public float impactVFXSpawnOffset = 0.1f;
 
-    public float damage = 10f;
+    public float damage;
 
     private ProjectileBase _projectileBase;
 
@@ -159,6 +159,7 @@ public class ProjectileStandard : MonoBehaviour
         Damageable damageable = collider.GetComponent<Damageable>();
         if (damageable)
         {
+            collider.GetComponent<EnemyController>().enemySpeed = 2.0f;
             damageable.InflictDamage(damage);
         }
         if(impactVFX != null)

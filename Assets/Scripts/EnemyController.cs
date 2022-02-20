@@ -24,15 +24,16 @@ public class EnemyController : MonoBehaviour
     public Vector3 distance;
     public bool inSight;
     private Animation anime;
-    public float enemySpeed = 4.0f;
+    public float enemySpeed = 2.0f;
     public bool isDead = false;
+    public bool isSet = false;
     public string state = "idle";
 
     private void Awake()
     {
         player = GameObject.Find("FPCharacterControlller_copy").transform;
         agent = GetComponent<NavMeshAgent>();
-
+        agent.speed = 6.0f;
         anime = GetComponent<Animation>();
         anime["Death"].wrapMode = WrapMode.Once;
     }
@@ -70,14 +71,21 @@ public class EnemyController : MonoBehaviour
 
         if (!inSight && !playerInAttackRange && !isDead)
         {
+            isSet = false;
             Idle();
         }
         if (inSight && !playerInAttackRange && !isDead)
         {
+            if (!isSet)
+            {
+                enemySpeed = 2.0f;
+                isSet = true;
+            }
             ChasePlayer();
         }
         if (inSight && playerInAttackRange && !isDead)
         {
+            isSet = false;
             AttackPlayer();
         }
 
@@ -98,18 +106,15 @@ public class EnemyController : MonoBehaviour
     {
         anime.Play("Run");
         state = "run";
-        //float dist = Vector3.Distance(transform.position, player.position);
-        //transform.LookAt(player);
-        //Vector3 movement = transform.forward * Time.deltaTime * enemySpeed;
-        //agent.Move(movement);
+        enemySpeed += 0.02f;
+        if(enemySpeed >= 5.0f)
+        {
+            enemySpeed = 5.0f;
+        }
+        agent.velocity = (player.position - transform.position).normalized * enemySpeed;
         //Debug.Log(agent.velocity);
-        //NavMeshPath path = new NavMeshPath();
-        //agent.CalculatePath(player.position, path);
-        //agent.SetPath(path);
-        //Debug.Log(path);
-        //agent.velocity = (transform.position - player.position).normalized * enemySpeed;
-        agent.speed = enemySpeed;
-        agent.SetDestination(player.position + distance);
+        agent.destination = player.position;
+        //agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
