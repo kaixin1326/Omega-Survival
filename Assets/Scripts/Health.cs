@@ -44,8 +44,6 @@ public class Health : MonoBehaviour
     public void AddHealth(float amount)
     {
         health += amount;
-        alpha.a -= (amount / health);
-        damageScreen.color = alpha;
         if(health >= 100)
         {
             health = 100;
