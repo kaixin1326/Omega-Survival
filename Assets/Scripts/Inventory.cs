@@ -8,7 +8,7 @@ public class Inventory
     private List<Item> itemList;
 
     public event EventHandler OnItemListChanged;
-
+   
     public Inventory()
     {
         itemList = new List<Item>();
@@ -50,7 +50,8 @@ public class Inventory
             case Item.ItemType.Medkit:
                 if(item.amount > 0)
                 {
-                    Health.AddHealth(25);
+                    Health _health = GameObject.Find("FPCharacterControlller_copy").GetComponent<Health>();
+                    _health.AddHealth(25);
                     AddItem(new Item { itemType = Item.ItemType.Medkit, amount = -1 });
                 }
                 break;

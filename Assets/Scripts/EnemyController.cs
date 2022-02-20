@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     public Vector3 distance;
     public bool inSight;
     private Animation anime;
-
+    public float enemySpeed = 4.0f;
     public bool isDead = false;
     public string state = "idle";
 
@@ -98,6 +98,17 @@ public class EnemyController : MonoBehaviour
     {
         anime.Play("Run");
         state = "run";
+        //float dist = Vector3.Distance(transform.position, player.position);
+        //transform.LookAt(player);
+        //Vector3 movement = transform.forward * Time.deltaTime * enemySpeed;
+        //agent.Move(movement);
+        //Debug.Log(agent.velocity);
+        //NavMeshPath path = new NavMeshPath();
+        //agent.CalculatePath(player.position, path);
+        //agent.SetPath(path);
+        //Debug.Log(path);
+        //agent.velocity = (transform.position - player.position).normalized * enemySpeed;
+        agent.speed = enemySpeed;
         agent.SetDestination(player.position + distance);
     }
 
