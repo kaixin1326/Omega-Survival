@@ -52,8 +52,6 @@ public class PickUp : MonoBehaviour
                 {
                     //put in inventory
                     if (hit.transform.gameObject.name.Contains("Ammo")) {
-                        Debug.Log("picked up ammo");
-                        Debug.Log(this.GetComponentInParent<WeaponManager>().activeWeapon);
                         GetComponentInParent<WeaponManager>().activeWeapon.AddAmmo(hit.transform.gameObject.GetComponent<itemDetail>().itemAmount);
                     }
                     inventory.AddItem(hit.transform.gameObject.GetComponent<itemDetail>().item);
@@ -62,7 +60,7 @@ public class PickUp : MonoBehaviour
             }
             else
             {
-                pickupNotice.enabled = true;
+                pickupNotice.enabled = false;
             }
         }
 

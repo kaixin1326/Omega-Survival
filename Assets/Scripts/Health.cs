@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    private float health = 100;
+    private static float health = 100;
     private float infectingDegree;
 
     private bool isDead;
@@ -34,6 +34,16 @@ public class Health : MonoBehaviour
         if (!isDead && health <= 0)
         {
             isDead = true;
+        }
+    }
+
+    public static void AddHealth(float amount)
+    {
+        health += amount;
+
+        if(health >= 100)
+        {
+            health = 100;
         }
     }
 
