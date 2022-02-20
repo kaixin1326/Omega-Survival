@@ -43,6 +43,20 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void UseItem(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.Medkit:
+                if(item.amount > 0)
+                {
+                    Health.AddHealth(25);
+                    AddItem(new Item { itemType = Item.ItemType.Medkit, amount = -1 });
+                }
+                break;
+        }
+    }
+
     public List<Item> GetItemList()
     {
         return itemList;

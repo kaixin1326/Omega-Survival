@@ -53,6 +53,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool GetFireInputHeld()
     {
+        if (bagOpened)
+        {
+            return false;
+        }
         return Input.GetButton("Fire");
     }
 
@@ -77,11 +81,15 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 bag.SetActive(false);
                 bagOpened = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 bag.SetActive(true);
                 bagOpened = true;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }

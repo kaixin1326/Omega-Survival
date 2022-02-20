@@ -56,6 +56,9 @@ public class UI_inventory : MonoBehaviour
             Text uiText = itemSlotRectTransform.Find("amountText").GetComponent<Text>();
             uiText.text = item.amount.ToString();
 
+            Button button = itemSlotRectTransform.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(() => inventory.UseItem(item));
+
             x++;
             if(x > 3)
             {
