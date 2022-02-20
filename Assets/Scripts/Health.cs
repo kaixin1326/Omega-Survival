@@ -13,12 +13,15 @@ public class Health : MonoBehaviour
 
     public Text HealthText;
     public Text GameStat;
+    public Image damageScreen;
+    Color alpha;
 
     private void Start()
     {
 
         isDead = false;
         isInfected = false;
+        alpha = damageScreen.color;
     }
 
     private void Update()
@@ -30,7 +33,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-
+        alpha.a += (damage / health);
+        damageScreen.color = alpha;
         if (!isDead && health <= 0)
         {
             isDead = true;
@@ -40,7 +44,8 @@ public class Health : MonoBehaviour
     public void AddHealth(float amount)
     {
         health += amount;
-
+        alpha.a -= (amount / health);
+        damageScreen.color = alpha;
         if(health >= 100)
         {
             health = 100;
