@@ -230,10 +230,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6856964676974129341}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7710334, y: 0.7953794, z: 0.3300083}
+  m_Size: {x: 1.6, y: 1.4, z: 1.4}
   m_Center: {x: -0.39583027, y: -0.21873224, z: 0.007519128}
 --- !u!1 &6856994705152991491
 GameObject:
@@ -2040,10 +2040,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858811577187078105}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4382899, y: 1.2537143, z: 1.2713784}
+  m_Size: {x: 1.6, y: 1.4, z: 1.4}
   m_Center: {x: -0.2883872, y: -0.3000389, z: -0.09432097}
 --- !u!1 &6858833479480289157
 GameObject:
@@ -2421,6 +2421,7 @@ GameObject:
   - component: {fileID: 6857645588770322431}
   - component: {fileID: 6857645588770322429}
   - component: {fileID: 510778892}
+  - component: {fileID: 3293385248790168607}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Enemy
@@ -2482,7 +2483,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 96
   m_CollisionDetection: 0
 --- !u!136 &6857645588770322426
 CapsuleCollider:
@@ -2546,12 +2547,13 @@ MonoBehaviour:
   health: 120
   timeBetweenAttacks: 1
   sightRange: 10
-  attackRange: 3
+  attackRange: 1.5
   angle: 360
   playerInSightRange: 0
   playerInAttackRange: 0
   distance: {x: 0, y: 0, z: 0}
   inSight: 0
+  enemySpeed: 4
   isDead: 0
   state: idle
 --- !u!114 &510778892
@@ -2564,6 +2566,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a5255a7e8a844adba029e9944daeeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3293385248790168607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858954387189150199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc47249eabb144436bda7be19009b96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6858957578684087827

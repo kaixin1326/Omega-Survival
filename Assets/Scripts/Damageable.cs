@@ -11,6 +11,6 @@ public class Damageable : MonoBehaviour
     }
     public void InflictDamage(float damage)
     {
-        enemy.TakeDemage(damage);
+        enemy.TakeDamage(damage);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    private static float health = 100;
+    public float health = 100;
     private float infectingDegree;
 
     private bool isDead;
@@ -27,9 +27,9 @@ public class Health : MonoBehaviour
         StartCoroutine(PauseGame());
     }
 
-    public void TakeDemage(float demage)
+    public void TakeDamage(float damage)
     {
-        health -= demage;
+        health -= damage;
 
         if (!isDead && health <= 0)
         {
@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public static void AddHealth(float amount)
+    public void AddHealth(float amount)
     {
         health += amount;
 
@@ -60,16 +60,6 @@ public class Health : MonoBehaviour
     private void UpdateHealthInfo(string _health)
     {
         HealthText.text = "Health: " + _health;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject col = collision.gameObject;
-        // Debug.Log(col.GetComponent<EnemyController>().state);
-        if (col.GetComponent<EnemyController>().state == "attacking" && health >= 0)
-        {
-            TakeDemage(25);
-        }
     }
 
     IEnumerator PauseGame ()

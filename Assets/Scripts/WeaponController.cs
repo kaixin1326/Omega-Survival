@@ -50,7 +50,6 @@ public class WeaponController : MonoBehaviour
         CurrentAmmo = AmmoInMag;
         CurrentAmmoCarried = 60;
         inventory = GetComponentInParent<PickUp>().inventory;
-        Debug.Log(inventory);
     }
 
     // Update is called once per frame
