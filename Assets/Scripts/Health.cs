@@ -27,9 +27,9 @@ public class Health : MonoBehaviour
         StartCoroutine(PauseGame());
     }
 
-    public void TakeDemage(float demage)
+    public void TakeDamage(float damage)
     {
-        health -= demage;
+        health -= damage;
 
         if (!isDead && health <= 0)
         {
@@ -68,7 +68,7 @@ public class Health : MonoBehaviour
         // Debug.Log(col.GetComponent<EnemyController>().state);
         if (col.GetComponent<EnemyController>().state == "attacking" && health >= 0)
         {
-            TakeDemage(25);
+            TakeDamage(25);
         }
     }
 

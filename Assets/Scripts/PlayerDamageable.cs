@@ -12,6 +12,6 @@ public class PlayerDamageable : MonoBehaviour
 
     public void InflictDamage(float damage)
     {
-        health.TakeDemage(damage);
+        health.TakeDamage(damage);
     }
 }

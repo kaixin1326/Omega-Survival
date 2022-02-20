@@ -124,9 +124,9 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public void TakeDemage(float demage)
+    public void TakeDamage(float damage)
     {
-        health -= demage;
+        health -= damage;
 
         if(!isDead && health <= 0)
         {
