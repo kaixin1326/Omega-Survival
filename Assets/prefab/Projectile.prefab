@@ -71,8 +71,9 @@ MonoBehaviour:
   - {fileID: 0}
   impactVFXLifeTime: 5
   impactVFXSpawnOffset: 0.1
-  damage: 10
+  damage: 5
   trajectoryCorrectionDistance: 5
+  bulletForce: 0
 --- !u!1 &8673405656186895986
 GameObject:
   m_ObjectHideFlags: 0
