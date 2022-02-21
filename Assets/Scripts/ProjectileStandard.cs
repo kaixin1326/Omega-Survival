@@ -159,6 +159,10 @@ public class ProjectileStandard : MonoBehaviour
         Damageable damageable = collider.GetComponent<Damageable>();
         if (damageable)
         {
+            // Rigidbody rb = collider.GetComponent<Rigidbody>();
+            // Vector3 direction = normal;
+            // direction.y = 0;
+            // rb.AddForce(direction.normalized * 1, ForceMode.Impulse);
             collider.GetComponent<EnemyController>().enemySpeed = 1.0f;
             damageable.InflictDamage(damage);
         }
