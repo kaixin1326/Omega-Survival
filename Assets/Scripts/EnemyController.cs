@@ -91,10 +91,6 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log(collision.gameObject.name);
-    //}
 
     private void Idle()
     {
@@ -150,6 +146,7 @@ public class EnemyController : MonoBehaviour
 
             anime.Play("Death");
             state = "dead";
+            agent.isStopped = true;
             Invoke(nameof(DestroyEnemy), 1.5f);
         }
     }

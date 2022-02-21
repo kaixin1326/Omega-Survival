@@ -17,7 +17,7 @@ public class ProjectileStandard : MonoBehaviour
 
     public LayerMask hittableLayers = -1;
 
-    public GameObject impactVFX;
+    public GameObject []impactVFX;
 
     public float impactVFXLifeTime = 5f;
     //击打到墙壁后粒子的偏移量
@@ -159,15 +159,29 @@ public class ProjectileStandard : MonoBehaviour
         Damageable damageable = collider.GetComponent<Damageable>();
         if (damageable)
         {
-            collider.GetComponent<EnemyController>().enemySpeed = 2.0f;
+            // Rigidbody rb = collider.GetComponent<Rigidbody>();
+            // Vector3 direction = normal;
+            // direction.y = 0;
+            // rb.AddForce(direction.normalized * 1, ForceMode.Impulse);
+            collider.GetComponent<EnemyController>().enemySpeed = 1.0f;
             damageable.InflictDamage(damage);
         }
         if(impactVFX != null)
         {
-            GameObject impactVFXInstance = Instantiate(impactVFX,
+            GameObject impactVFXInstance;
+            if (damageable)
+            {
+                impactVFXInstance = Instantiate(impactVFX[1],
                 point + normal * impactVFXSpawnOffset,
                 Quaternion.LookRotation(normal));
+            }
+            else
+            {
+                 impactVFXInstance = Instantiate(impactVFX[0],
+                                point + normal * impactVFXSpawnOffset,
+                                Quaternion.LookRotation(normal));
 
+            }
             if(impactVFXLifeTime > 0)
             {
                 Destroy(impactVFXInstance, impactVFXLifeTime);
