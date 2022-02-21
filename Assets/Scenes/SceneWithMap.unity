@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -44477,11 +44477,12 @@ MonoBehaviour:
   health: 100
   infectionRate: 0
   masked: 0
-  infectionInterval: 3
+  infectionInterval: 0
   HealthText: {fileID: 1943108964}
   InfectionText: {fileID: 1191723772}
   GameStat: {fileID: 1064726529}
   damageScreen: {fileID: 726559015}
+  lastDamageTime: -1
 --- !u!114 &766317026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47114,6 +47115,30 @@ PrefabInstance:
       propertyPath: uiInventory
       value: 
       objectReference: {fileID: 597294668}
+    - target: {fileID: 766317025, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: GameStat
+      value: 
+      objectReference: {fileID: 1064726529}
+    - target: {fileID: 766317025, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: HealthText
+      value: 
+      objectReference: {fileID: 1943108964}
+    - target: {fileID: 766317025, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: damageScreen
+      value: 
+      objectReference: {fileID: 726559015}
+    - target: {fileID: 766317025, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: InfectionText
+      value: 
+      objectReference: {fileID: 1191723772}
+    - target: {fileID: 766317031, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: uiInventory
+      value: 
+      objectReference: {fileID: 597294668}
+    - target: {fileID: 766317031, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
+      propertyPath: pickupNotice
+      value: 
+      objectReference: {fileID: 999635993}
     - target: {fileID: 3417729945504043058, guid: 9483fa692b592764f939fa3af68e57d1, type: 3}
       propertyPath: m_Name
       value: FPCharacterControlller_copy
