@@ -55,6 +55,15 @@ public class Inventory
                     AddItem(new Item { itemType = Item.ItemType.Medkit, amount = -1 });
                 }
                 break;
+            case Item.ItemType.Mask:
+                if (item.amount > 0)
+                {
+                    Health _health = GameObject.Find("FPCharacterControlller_copy").GetComponent<Health>();
+                    _health.infectionRate = 0;
+                    _health.masked = true;
+                    AddItem(new Item { itemType = Item.ItemType.Mask, amount = -1 });
+                }
+                break;
         }
     }
 
