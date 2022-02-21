@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public float health = 100;
-    private float infectingDegree;
+    public float infectionRate;
+    public bool masked = false;
+    public float infectionInterval;
 
     private bool isDead;
     private bool isInfected;
+    private float nextInfectionTime = 0.0f;
 
     public Text HealthText;
+    public Text InfectionText;
     public Text GameStat;
     public Image damageScreen;
     Color alpha;
@@ -23,13 +27,25 @@ public class Health : MonoBehaviour
 
         isDead = false;
         isInfected = false;
+
+        infectionRate = 25;
+        infectionInterval = 3f;
+
         alpha = damageScreen.color;
+
     }
 
     private void Update()
     {
         UpdateHealthInfo(health.ToString());
+        UpdateInfectionInfo(infectionRate.ToString());
         StartCoroutine(PauseGame());
+
+        if (Time.time >= nextInfectionTime && !masked) {
+
+            nextInfectionTime += infectionInterval;
+            TakeInfection(1f);
+
         if (lastDamageTime >= 0 && (Time.time - lastDamageTime) >= delay)
         {
             if (alpha.a <= 0){
@@ -39,8 +55,10 @@ public class Health : MonoBehaviour
                 alpha.a -= 0.01f;
                 damageScreen.color = alpha;
             }
+
         }
     }
+
 
     public void TakeDamage(float damage)
     {
@@ -73,9 +91,9 @@ public class Health : MonoBehaviour
 
     public void TakeInfection(float infection)
     {
-        infectingDegree -= infectingDegree;
+        infectionRate += infection;
 
-        if (!isInfected && infectingDegree <= 0)
+        if (!isInfected && infectionRate >= 100)
         {
             isInfected = true;
         }
@@ -86,14 +104,27 @@ public class Health : MonoBehaviour
         HealthText.text = "Health: " + _health;
     }
 
-    IEnumerator PauseGame ()
+    private void UpdateInfectionInfo(string _infection)
     {
+        InfectionText.text = "Infection: " + _infection;
+    }
+
+    IEnumerator PauseGame ()
+    {   
         if(isDead)
         {
             GameStat.text = "Game Over!";
             yield return new WaitForSecondsRealtime(1);
             Time.timeScale = 0f;
         }
+
+        if (isInfected)
+        {
+            GameStat.text = "You are infected!";
+            yield return new WaitForSecondsRealtime(1);
+            Time.timeScale = 0f;
+        }
+
         // else 
         // {
         //     GameStat.text = "";
